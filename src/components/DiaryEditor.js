@@ -4,6 +4,28 @@ export default function DiaryEditor({ insertDiary }) {
   // const [contents, setContents] = useState("");
   // const [emotion, setEmotion] = useState(1);
   // obj = {name:"장성호",age:22,weight:90}
+  const radioList = [
+    {
+      emotion: 1,
+      txt: "좋아요",
+    },
+    {
+      emotion: 2,
+      txt: "시르다",
+    },
+    {
+      emotion: 3,
+      txt: "화나요",
+    },
+    {
+      emotion: 4,
+      txt: "별로에요",
+    },
+    {
+      emotion: 5,
+      txt: "감동이에요",
+    },
+  ];
   const writerRef = useRef();
   const contentsRef = useRef();
   const [diaryItem, setDiaryItem] = useState({
@@ -48,7 +70,7 @@ export default function DiaryEditor({ insertDiary }) {
   };
   */
   const changeDiaryItem = function (e) {
-    console.log(e.target.name);
+    console.log(e.target.value);
     // 흩뿌리기....
     setDiaryItem({
       ...diaryItem,
@@ -73,33 +95,42 @@ export default function DiaryEditor({ insertDiary }) {
         <textarea name="contents" id="" cols="30" rows="10" value={diaryItem.contents} placeholder="내용을 입력해 주세요." onChange={changeDiaryItem} ref={contentsRef}></textarea>
       </div>
       <div className="section">
-        <label>오늘 하루 어땠나요?</label>
-        <select name="emotion" id="" value={diaryItem.emotion} onChange={changeDiaryItem}>
+        <span>오늘 하루 어땠나요?</span>
+        {/* <select name="emotion" id="" value={diaryItem.emotion} onChange={changeDiaryItem}>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
           <option value="5">5</option>
-        </select>
+        </select> */}
+        {radioList.map((item, idx) => {
+          console.log(diaryItem.emotion === item.emotion);
+          return (
+            <label key={idx}>
+              <span>{item.txt}</span>
+              <input type="radio" name="emotion" value={item.emotion} checked={diaryItem.emotion === item.emotion} id="" onChange={changeDiaryItem} />
+            </label>
+          );
+        })}
         {/* <label>
           <span>좋아요</span>
-          <input type="radio" name="emotion" value="1" id="" checked />
+          <input type="radio" name="emotion" value="1" checked={diaryItem.emotion === "1"} id="" onChange={changeDiaryItem} />
         </label>
         <label>
           <span>나빠요</span>
-          <input type="radio" name="emotion" value="2" id="" />
+          <input type="radio" name="emotion" value="2" checked={diaryItem.emotion === "2"} onChange={changeDiaryItem} id="" />
         </label>
         <label>
           <span>시르다</span>
-          <input type="radio" name="emotion" value="3" id="" />
+          <input type="radio" name="emotion" value="3" checked={diaryItem.emotion === "3"} onChange={changeDiaryItem} id="" />
         </label>
         <label>
           <span>감동이에요</span>
-          <input type="radio" name="emotion" value="4" id="" />
+          <input type="radio" name="emotion" value="4" checked={diaryItem.emotion === "4"} onChange={changeDiaryItem} id="" />
         </label>
         <label>
           <span>화나요</span>
-          <input type="radio" name="emotion" value="5" id="" />
+          <input type="radio" name="emotion" value="5" checked={diaryItem.emotion === "5"} onChange={changeDiaryItem} id="" />
         </label> */}
       </div>
       <div className="btns section">
