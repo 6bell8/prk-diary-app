@@ -24,11 +24,12 @@
 //   );
 // }
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function DiaryItem({ writer, id, emotion, contents, date, deleteDiary, modifyDiary }) {
   const [isEdit, setIsEdit] = useState(false);
   const [localContents, setLocalContents] = useState(contents);
+  const contentsRef = useRef();
   return (
     <li className="diaryItem">
       <div className="info">
@@ -50,6 +51,11 @@ export default function DiaryItem({ writer, id, emotion, contents, date, deleteD
               <button
                 className="btn"
                 onClick={() => {
+                  if (localContents.length < 10) {
+                    alert("일기내용은 10글자 이상이어야 합니다.");
+                    contentsRef.current.focus();
+                    return;
+                  }
                   modifyDiary(id, localContents);
                   setIsEdit(false);
                 }}
@@ -71,6 +77,7 @@ export default function DiaryItem({ writer, id, emotion, contents, date, deleteD
                 className="btn"
                 onClick={() => {
                   setIsEdit(true);
+                  setLocalContents(contents);
                 }}
               >
                 <span className="material-icons">edit</span>
@@ -92,10 +99,7 @@ export default function DiaryItem({ writer, id, emotion, contents, date, deleteD
       {isEdit ? (
         <>
           <textarea
-            name=""
-            id=""
-            cols="30"
-            rows="10"
+            ref={contentsRef}
             value={localContents}
             onChange={(e) => {
               setLocalContents(e.target.value);
