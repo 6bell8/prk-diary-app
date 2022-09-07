@@ -47,30 +47,36 @@ export default function DiaryItem({ writer, id, emotion, contents, date }) {
           {isEdit ? (
             <>
               <button
+                className="btn"
                 onClick={() => {
                   setIsEdit(false);
                 }}
               >
-                done
+                <span className="material-icons">done</span>
               </button>
               <button
+                className="btn"
                 onClick={() => {
                   setIsEdit(false);
                 }}
               >
-                close
+                <span className="material-icons">close</span>
               </button>
             </>
           ) : (
             <>
               <button
+                className="btn"
                 onClick={() => {
                   setIsEdit(true);
                 }}
               >
-                edit
+                <span className="material-icons">edit</span>
               </button>
-              <button>delete</button>
+              <button className="btn">
+                delete
+                <span className="material-icons">delete</span>
+              </button>
             </>
           )}
         </div>

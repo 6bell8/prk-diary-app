@@ -10,7 +10,7 @@ export default function DairyList({ diaryList }) {
           <h2>diary list</h2>
           <p className="total">{total}개의 일기가 있습니다.</p>
         </div>
-        <ul>
+        <ul className="list">
           {diaryList.map((item, idx) => {
             //console.log({ ...item });
             //return <DiaryItem key={idx} diaryInfo={item} />;
