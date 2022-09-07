@@ -1,6 +1,6 @@
 import DiaryItem from "./DiaryItem";
 
-export default function DairyList({ diaryList }) {
+export default function DairyList({ diaryList, deleteDiary, modifyDiary }) {
   console.log(diaryList);
   const total = diaryList.length;
   return (
@@ -14,7 +14,7 @@ export default function DairyList({ diaryList }) {
           {diaryList.map((item, idx) => {
             //console.log({ ...item });
             //return <DiaryItem key={idx} diaryInfo={item} />;
-            return <DiaryItem key={idx} {...item} />;
+            return <DiaryItem key={idx} {...item} deleteDiary={deleteDiary} modifyDiary={modifyDiary} />;
           })}
         </ul>
       </div>

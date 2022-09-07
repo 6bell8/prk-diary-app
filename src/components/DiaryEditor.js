@@ -96,14 +96,14 @@ export default function DiaryEditor({ insertDiary }) {
       </div>
       <div className="section">
         <span>오늘 하루 어땠나요?</span>
-        {/* <select name="emotion" id="" value={diaryItem.emotion} onChange={changeDiaryItem}>
+        <select name="emotion" id="" value={diaryItem.emotion} onChange={changeDiaryItem}>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
           <option value="5">5</option>
-        </select> */}
-        {radioList.map((item, idx) => {
+        </select>
+        {/* {radioList.map((item, idx) => {
           console.log(diaryItem.emotion === item.emotion);
           return (
             <label key={idx}>
@@ -111,7 +111,7 @@ export default function DiaryEditor({ insertDiary }) {
               <input type="radio" name="emotion" value={item.emotion} checked={diaryItem.emotion === item.emotion} id="" onChange={changeDiaryItem} />
             </label>
           );
-        })}
+        })} */}
         {/* <label>
           <span>좋아요</span>
           <input type="radio" name="emotion" value="1" checked={diaryItem.emotion === "1"} id="" onChange={changeDiaryItem} />

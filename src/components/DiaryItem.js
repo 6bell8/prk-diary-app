@@ -26,8 +26,9 @@
 
 import { useState } from "react";
 
-export default function DiaryItem({ writer, id, emotion, contents, date }) {
+export default function DiaryItem({ writer, id, emotion, contents, date, deleteDiary, modifyDiary }) {
   const [isEdit, setIsEdit] = useState(false);
+  const [localContents, setLocalContents] = useState(contents);
   return (
     <li className="diaryItem">
       <div className="info">
@@ -49,6 +50,7 @@ export default function DiaryItem({ writer, id, emotion, contents, date }) {
               <button
                 className="btn"
                 onClick={() => {
+                  modifyDiary(id, localContents);
                   setIsEdit(false);
                 }}
               >
@@ -73,8 +75,14 @@ export default function DiaryItem({ writer, id, emotion, contents, date }) {
               >
                 <span className="material-icons">edit</span>
               </button>
-              <button className="btn">
-                delete
+              <button
+                className="btn"
+                onClick={() => {
+                  if (window.confirm(`${id + 1}번째 다이어리를 지우겠습니까?`)) {
+                    deleteDiary(id);
+                  }
+                }}
+              >
                 <span className="material-icons">delete</span>
               </button>
             </>
@@ -83,7 +91,16 @@ export default function DiaryItem({ writer, id, emotion, contents, date }) {
       </div>
       {isEdit ? (
         <>
-          <textarea name="" id="" cols="30" rows="10" value={contents}></textarea>
+          <textarea
+            name=""
+            id=""
+            cols="30"
+            rows="10"
+            value={localContents}
+            onChange={(e) => {
+              setLocalContents(e.target.value);
+            }}
+          ></textarea>
         </>
       ) : (
         <div className="contents">{contents}</div>
