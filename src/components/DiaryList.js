@@ -14,7 +14,14 @@ export default function DairyList({ diaryList, deleteDiary, modifyDiary }) {
           {diaryList.map((item, idx) => {
             //console.log({ ...item });
             //return <DiaryItem key={idx} diaryInfo={item} />;
-            return <DiaryItem key={idx} {...item} deleteDiary={deleteDiary} modifyDiary={modifyDiary} />;
+            return (
+              <DiaryItem
+                key={idx}
+                {...item}
+                deleteDiary={deleteDiary}
+                modifyDiary={modifyDiary}
+              />
+            );
           })}
         </ul>
       </div>

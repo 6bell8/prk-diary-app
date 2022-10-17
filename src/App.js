@@ -13,8 +13,6 @@ function App() {
   // 데이터 바뀌는 걸 테스트 해봤음....
   let count = 0;
   const deleteDiary = function (id) {
-    console.log("id===", id);
-    //여기서 전달 받은 id값만 지우고
     const filteredDiaryData = diaryData.filter((item, idx) => {
       return item.id !== id;
     });
@@ -105,11 +103,14 @@ function App() {
           </dd>
         </dl>
       </div>
-      <DiaryList diaryList={diaryData} deleteDiary={deleteDiary} modifyDiary={modifyDiary} />
+      <DiaryList
+        diaryList={diaryData}
+        deleteDiary={deleteDiary}
+        modifyDiary={modifyDiary}
+      />
       <Footer />
     </div>
   );
 }
 
 export default App;
-
